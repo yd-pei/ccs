@@ -6,21 +6,23 @@ SUPPORTED_DS = {
     "nyu-mll/glue":"cola" 
 }
 
+GLUE = "nyu-mll/glue"
+
 def get_ds_config(dataset:str):
-    if dataset in SUPPORTED_DS.keys():
+    if dataset in SUPPORTED_DS:
         return SUPPORTED_DS[dataset]
     else:
         raise ValueError(f"Dataset {dataset} not supported.")
     
-def load_cola()->CcsData:
+def load_cola(split)->CcsData:
     cola = load_dataset(
-        "nyu-mll/glue",
-        get_ds_config("nyu-mll/glue"),
-        split="train"
+        GLUE,
+        get_ds_config(GLUE),
+        split
     )
     
     ccs_cola = CcsData(cola,
-        "nyu-mll/glue",
-        get_ds_config("nyu-mll/glue")    
+        GLUE,
+        get_ds_config(GLUE)
     )
     return ccs_cola

@@ -26,6 +26,35 @@ def get_parser():
         help='Dataset repo name on hf.'
     )
 
+    parser.add_argument(
+        '-s','--split',
+        type=str,
+        default='train',
+        help='Split repo name on hf.'
+    )
+
+    parser.add_argument(
+        '-t','--task',
+        type=str,
+        default='train',
+        choices=['train', 'evaluate'],
+        help='What task to run.'
+    )
+
+    parser.add_argument(
+        '-i','--iteration',
+        type=int,
+        default=1000,
+        help='How many data samples to be used.'
+    )
+
+    parser.add_argument(
+        '-b','--batch',
+        type=int,
+        default=32,
+        help='How many batches to use for GPU training.'
+    )
+
     return parser
 
 def main(args=None):
