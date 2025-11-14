@@ -1,4 +1,5 @@
 import argparse
+from src.ccs.core.ccs_core import ccs_train
 # import huggingface_hub as hf
 # import os
 
@@ -17,14 +18,24 @@ def get_parser():
         help='Model repo name on hf.'
     )
 
+    parser.add_argument(
+        '-d','--dataset',
+        type=str,
+        default='nyu-mll/glue',
+        choices=['nyu-mll/glue'],
+        help='Dataset repo name on hf.'
+    )
+
     return parser
 
 def main(args=None):
     parser = get_parser()
     parsed_args = parser.parse_args(args)
 
-    hf_model = parsed_args.model
-    print(f"Model: {hf_model} being used.")
+    print(f"Model: {parsed_args.model} being used.")
+    print(f"Dataset: {parsed_args.dataset} being used.")
+
+    ccs_train(parsed_args)
 
     """ try:
         hf_login_token = os.environ.get(TOKEN_VAR_NAME)
