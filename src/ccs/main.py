@@ -1,5 +1,5 @@
 import argparse
-from src.ccs.core.ccs_core import ccs_train
+from src.ccs.core.ccs_core import ccs_main
 # import huggingface_hub as hf
 # import os
 
@@ -64,7 +64,7 @@ def main(args=None):
     print(f"Model: {parsed_args.model} being used.")
     print(f"Dataset: {parsed_args.dataset} being used.")
 
-    ccs_train(parsed_args)
+    ccs_main(parsed_args)
 
     """ try:
         hf_login_token = os.environ.get(TOKEN_VAR_NAME)
